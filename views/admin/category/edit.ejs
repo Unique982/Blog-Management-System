@@ -1,0 +1,61 @@
+<title><%= pageTitle %></title>
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+<%- include('../partials/sidebar') %>
+<div class="content-wrapper">
+  <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Catgroy Update</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                <li class="breadcrumb-item active">Update</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Category Update</h3>
+                </div>
+                <div class="card-body">
+                  <form action="/admin/category/edit" method="POST">
+                    <input type="hidden" name="id" value="<%= categorys._id %>">
+                    <div class="form-group">
+                      <label for="">Category</label>
+                      <input type="text" name="categoryName" value="<%= categorys.categoryName %>" placeholder="Enter Category" class="form-control">
+                      <% if(errors && errors.categoryName){ %>
+                        <span class="text-danger"><%= errors.categoryName.msg %></span>
+                        <% } %>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="">Category Description</label>
+                     <textarea name="description" id="" class="form-control"><%= categorys.description %></textarea>
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" class="btn btn-primary bt-sm" value="Update">
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+     
+    <!-- /.content -->
+  </div>
+  
+
+<%- include('../partials/script') %>
+<%- include('../partials/footer') %>

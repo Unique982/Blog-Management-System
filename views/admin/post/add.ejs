@@ -1,0 +1,73 @@
+<title><%= pageTitle %></title>
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+<%- include('../partials/sidebar') %>
+<div class="content-wrapper">
+  <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Add Post</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                <li class="breadcrumb-item active">Post</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Post Add</h3>
+                </div>
+                <div class="card-body">
+                  <form action="" method="POST" novalidate="novalidate">
+                    <div class="form-group">
+                      <label for="">Title</label>
+                      <input type="text" name="Title" placeholder="Enter Title" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="">Description</label>
+                   <textarea name="" id="" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Category</label>
+                    <select name="category" id="category" class="form-control">
+                      <option  selected disabled>Select Category</option>
+                      <% if(Array.isArray(categories) ){ %>
+                      <% categories.forEach(category =>  { %>
+                        <option value="<%= category._id %>"><%= category.categoryName %></option>
+                     <%  })%>
+                     <% } else{ %>
+                      <option disabled>No category availavble</option>
+                    <% } %>
+                    </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="">Tag</label>
+                      <input type="text" name="tag" placeholder="Enter Tag" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" class="btn btn-primary bt-sm" value="Add Post">
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+     
+    <!-- /.content -->
+  </div>
+  
+
+<%- include('../partials/script') %>
+<%- include('../partials/footer') %>

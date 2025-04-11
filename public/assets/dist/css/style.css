@@ -1,0 +1,306 @@
+
+*{
+    margin: 0;
+ padding: 0;
+ font-family: 'Times New Roman', Times, serif;
+ 
+}
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+a{
+    color: rgb(244, 8, 8);
+    text-decoration: none;
+    transition: all 0.4s ease;
+    font-size: 25px;
+    font-weight: 500;
+}
+img{
+    width: 100%;
+}
+section{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+h3{
+    font-size: 30px;
+    font-weight: 700;
+    color: #ffffff;
+}
+p{
+    font-size: 18px;
+    font-weight: 500;
+    color: #f9f9f9; 
+}
+.nav-item{
+    font-size: 16px;
+    font-weight: 600;
+    margin-right: 10px;
+
+}
+.navbar{
+    box-shadow: 0px 6px 30px rgba(0,0,0.4, 0.08);
+    position: sticky;
+}
+/* .navbar-brand{
+    color: rgb(12, 12, 12);
+    font-weight: 500px;
+    font-size: 20px;
+} */
+.navbar-brand{
+    color: brown;
+    font-weight: 700;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+.navbar-brand span{
+    color: rgb(49, 144, 141);
+    font-weight: bold;
+    font-size: 18px;
+    margin:2px;
+}
+.btn{
+    padding: 9px 20px;
+}
+
+.btn-brand{
+    background-color: aqua;
+    color: #fff;
+}
+/* slider Setion */
+.sliderOne{
+    background-image: linear-gradient(rgba(9,30,50,0.4),rgba(9, 30, 50, 0.4)), url('https://cdn.pixabay.com/photo/2017/10/04/09/56/laboratory-2815641_1280.jpg');
+   background-position: center !important;
+   background-size: cover !important;
+   background-repeat: no-repeat !important;
+   
+}
+.sliderTwo{
+    background-image: linear-gradient(rgba(9,30,50,0.4),rgba(9, 30, 50, 0.4)), url('../../images/young-handsome-physician-medical-robe-with-stethoscope_1303-17818.avif');
+    background-position: center !important;
+   background-size: cover !important;
+   background-repeat: no-repeat !important;
+}
+.sliderThree{
+    background-image: linear-gradient(rgba(9,30,50,0.4),rgba(9, 30, 50, 0.4)), url('https://cdn.pixabay.com/photo/2024/04/01/09/43/ai-generated-8668518_960_720.png');
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+/* About Section */
+.about_sec h1{
+    font-size: 25px;
+    color: #3108ff;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.about_sec p{
+    font-size: 16px;
+    color: #000;
+    text-align: justify;
+}
+.about .card-body img{
+    border-radius: 10px;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+.about-detalis img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* Service Section */
+.services .card{
+    border-radius: 10px;
+    width: 100%;
+    height: 250px;
+}
+.services .card i{
+    font-size: 40px;
+    color: #56eb00;
+    margin-bottom: 10px;
+}
+.services .card h5{
+    font-size: 20px;
+    color: #000;
+    font-weight: bold;
+}
+.services .card p{
+    font-size: 15px;
+    text-align: justify;
+    margin: 7px;
+}
+/* team Section*/
+.team .card{
+    border-radius: 10px;
+    overflow: hidden;
+}
+.team img{
+    width: 100%;
+    height: 300px;
+    border-radius: 20px;
+    object-fit: cover;
+    border: 3px solid #fff;
+      
+}
+.team .social-link i{
+    color: #f9f9f9;
+}
+/* Blog  Section*/
+
+.blog-post h3{
+    margin-top: 12px;
+    margin-bottom:12;
+    color:#000000;
+    font-size: 24px;
+    transition: 0.3s ease-in-out;
+    
+}
+.blog-post img{
+   width: 100%;
+   height: 300px;
+   border-radius: 10px;
+   object-fit: cover;
+}
+.blog-post p{
+    font-size: 15px;
+ text-align: justify;
+}
+.blog-post h3:hover{
+    color: blue;
+}
+.blog-post .card{
+    box-shadow:0px 4px 8px rgba(0,0,0, 0.08) ;
+    border-radius: 50px;
+}
+.blog-post .card-body{
+padding: 10px;
+}
+/* single blog section */
+.single-detalis .card-body p{
+    color: #fff;;
+    text-align: justify;
+}
+.single-detalis img{
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.single-detalis .card-body h5{
+    color: #000;
+    font-size: 20px;
+    text-align: justify;
+    margin: 2px;
+    font-weight: bold;
+}
+.single-detalis .card-body p{
+   color: #000;
+   margin: 10px;
+   font-size: 16px;
+   text-align: justify;
+
+}
+.single-detalis .card-body strong{
+    font-size: 18px;
+    font-weight: bold;
+}
+.recent-head {
+    font-weight: 600;
+    font-size: 25px;
+    margin-bottom: 20px;
+    border-bottom:5px solid #000;
+ 
+}
+.recent-info{
+    display: flex;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #000;
+}
+.recent-info:last-child{
+    border-bottom: none;
+}
+.recent-info img{
+    width: 400px;
+    height: 80px;
+    object-fit: cover;
+}
+.recent-info h1{
+    font-size: 15px;
+    font-weight: bold;
+    color: #000;
+    margin-left: 20px;
+}
+
+.recent-info a{
+    font-size: 15px;
+    margin-left: 7px;
+}
+.recent-info a:hover{
+    color:blue;
+}
+/* footer  */
+footer .footer-head{
+    font-size: 28px;
+    color: rgba(12, 12, 12, 0.997);
+    font-weight: bolder;
+    margin: 10px;
+    margin-top: 10px;
+    text-decoration: underline;
+}
+.contact_info li strong{
+    font-size: 18px;
+    font-weight: 400;
+    font-weight: 500;
+}
+.contact_info li a{
+    font-size: 15px;
+    color: #000000;
+}
+.contact_info a:hover{
+    color: blue;
+}
+footer p{
+    font-size: 15px;
+    color: #000000;
+    text-align: justify;
+}
+.quick-link{
+    font-size: 15px;
+    color: #000000;
+}
+.quick-link:hover{
+    color: blue;
+
+}
+.socail-link {
+    display: flex;
+    gap: 2px;
+    margin: 10px;
+
+}
+ .socail-link a{
+    background-color: #000000;
+    padding: 5px;
+    margin: 10px;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    box-sizing: border-box;
+    display: grid;
+    place-items: center;
+}
+.socail-link a i{
+    font-size: 20px;
+    color: #f9f9f9;
+}
+
+
+

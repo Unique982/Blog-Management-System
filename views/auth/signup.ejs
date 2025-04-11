@@ -1,0 +1,70 @@
+<!-- Include here header file  -->
+ <%-include('../admin/partials/header') %>
+<title><%= pageTitle %></title>
+
+<div class="container d-flex align-items-center justify-content-center vh-100" style="font-family: 'Times New Roman', Times, serif; font-size: 16px;">
+    <div class="row justify-content-center w-100">
+      <div class="col-md-6">
+        <div class="card p-4 rounded-4" style="width: 100%; max-width: 700px;">
+          <h3 class="text-center mb-2">Create an Account</h3>
+          <hr style="border:2px solid black" width="100%">
+       
+        <div class="card-body">
+          <form action="/signup" method="POST">
+            <div class="form-group mb-2">
+              <label for="">Username</label>
+              <input type="text" name="username" value="<%= typeof  oldInput !=='undefined' ? oldInput.username :'' %>" class="form-control" placeholder="Enter Your Usename">
+              <% if(errors && errors.username){ %>
+                <span class="text-danger"><%= errors.username.msg %></span>
+                <% } %>
+            </div>
+            <div class="form-group mb-2">
+              <label for="">First Name</label>
+              <input type="text" name="firstName" value="<%= typeof oldInput !== 'undefined' ? oldInput.firstName:'' %>"class="form-control" placeholder="Enter Your FirstName">
+              <% if(errors && errors.firstName) {%>
+              <span class="text-danger"><%= errors.firstName.msg %></span>
+              <% } %>
+            </div>
+            <div class="form-group mb-2">
+              <label for="">Last Name</label>
+              <input type="text" name="lastName" value="<%= typeof oldInput !=='undefined'? oldInput.lastName:'' %>" placeholder="Enter Your LasName" class="form-control">
+              <% if(errors && errors.lastName) {  %>
+              <span class="text-danger"><%= errors.lastName.msg %></span>
+              <% } %>
+            </div>
+            <div class="form-group mb-2">
+              <label for="">Email</label>
+              <input type="text" name="email" value="<%= typeof oldInput!=='undefined'?  oldInput.email :'' %>" placeholder="Enter Your Email" class="form-control">
+              <% if(errors && errors.email) {  %>
+              <span class="text-danger"><%= errors.email.msg %></span>
+              <% } %>
+              
+            </div>
+            <div class="form-group mb-2">
+              <label for="">Password</label>
+              <input type="password" name="password" placeholder="Enter Your Password" class="form-control">
+              <% if(errors && errors.password) {  %>
+              <span class="text-danger"><%= errors.password.msg %></span>
+              <% } %>
+            </div>
+            <div class="form-group mb-2">
+              <label for="">Confirm Password</label>
+              <input type="password" name="confirmPassword" placeholder="Enter ConfirmPassword" class="form-control">
+              <% if(errors && errors.confirmPassword) { %>
+              <span class="text-danger"><%= errors.confirmPassword.msg %></span>
+              <% } %>
+            </div>
+            <div class="form-group mb-2">
+              <input type="submit" value="Register" class="btn btn-primary w-100">
+              <p class="text-center mt-3">Already have an account?  <a href="/login">Login</a></p>
+            </div>
+          </form>
+        </div>
+        </div>
+      </div>
+    </div>
+   </div>
+   <!-- Include  script file  -->
+   <%- include('../admin/partials/script') %>
+
+
