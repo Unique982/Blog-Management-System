@@ -7,12 +7,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1>Add Post</h1>
+              <h1>Post Update</h1>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
-                <li class="breadcrumb-item active">Post</li>
+                <li class="breadcrumb-item active">Post Update</li>
               </ol>
             </div>
           </div>
@@ -24,20 +24,21 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Post Add</h3>
+                  <h3 class="card-title">Post Update</h3>
                 </div>
                 <div class="card-body">
-                  <form action="" method="POST" novalidate="novalidate">
+                  <form action="/admin/post/edit" method="POST">
+                    <input type="hidden" name="id" value="<%= postlist._id %>">
                     <div class="form-group">
                       <label for="">Title</label>
-                      <input type="text" name="title" value="<%= typeof  oldInput !=='undefined' ? oldInput.title :'' %>"placeholder="Enter Title" class="form-control">
+                      <input type="text" name="title" value="<%= postlist.title %>" placeholder="Enter Post" class="form-control">
                       <% if(errors && errors.title){ %>
-                      <span class="text-danger" style="font-size:18;"><%= errors.title.msg %></span>
-                      <% } %>
+                        <span class="text-danger"><%= errors.title.msg %></span>
+                        <% } %>
                     </div>
                     <div class="form-group">
                       <label for="">Description</label>
-                   <textarea name="description" id="" class="form-control"><%= typeof  oldInput !=='undefined' ? oldInput.description :'' %></textarea>
+                   <textarea name="description" id="" class="form-control"><%= postlist.description %></textarea>
                    <% if(errors && errors.description) { %>
                    <span class="text-danger"><%= errors.description.msg %></span>
                    <% } %>
@@ -48,7 +49,7 @@
                       <option  selected disabled>Select Category</option>
                       <% if(Array.isArray(categories) ){ %>
                       <% categories.forEach(category =>  { %>
-                        <option value="<%= category._id %>"<%=(category._id == oldInput?.category) ? 'selected' :'' %>><%= category.categoryName %></option>
+                        <option value="<%= category._id %>"<%=(category._id.toString() === postlist.category.toString()) ? 'selected' :'' %>><%= category.categoryName %></option>
                      <%  })%>
                      <% } else{ %>
                       <option disabled>No category availavble</option>
@@ -58,12 +59,15 @@
                       <span class="text-danger"><%= errors.category.msg %></span>
                       <% } %>
                     </div>
+                   
                     <div class="form-group">
                       <label for="">Tag</label>
-                      <input type="text" name="tag" value="<%= typeof oldInput!=='undefined' ? oldInput.tag:'' %> " placeholder="Enter Tag" class="form-control">
+                      <input type="text" name="tag" value="<%= postlist.tag %> " placeholder="Enter Tag" class="form-control">
                     </div>
+                    
+                  
                     <div class="form-group">
-                      <input type="submit" class="btn btn-primary bt-sm" value="Add Post">
+                      <input type="submit" class="btn btn-primary bt-sm" value="Update">
                     </div>
 
                   </form>

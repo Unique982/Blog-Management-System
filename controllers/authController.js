@@ -42,7 +42,7 @@ exports.postSignup = [
   .withMessage("Email is required")
   .trim()
   .isEmail()
-  .withMessage("Plase Enter Valid Email"),
+  .withMessage("Please Enter Valid Email"),
 
   check("password")
   .notEmpty()

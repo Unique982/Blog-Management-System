@@ -129,7 +129,6 @@ check("description")
 
 }
 ]
-
 // delete Category 
 exports.deleteCategory = (req,res,next) =>{
   const id  =req.params.id;

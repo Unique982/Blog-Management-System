@@ -6,13 +6,12 @@ include('../partials/sidebar') %>
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Editor List</h1>
-          
+          <h1>Post List</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
-            <li class="breadcrumb-item active">Editor</li>
+            <li class="breadcrumb-item active">Post</li>
           </ol>
         </div>
       </div>
@@ -25,36 +24,48 @@ include('../partials/sidebar') %>
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title mt-2">List User</h3>
-              <a href="/admin/editor/add" class="btn btn-primary ml-2">Add New Editor</a>
+              <h3 class="card-title mt-2">Post List</h3>
+              <a href="/admin/post/add" class="btn btn-primary ml-2">Add Post</a>
             </div>
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>Id</th>
-                    <th>username</th>
-                    <th>Full Name</th>
-                    <th>Email</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Author Name</th>
+                    <th>Category</th>
+                    <th>Date</th>
                     <th>Action</th>
+                
                   </tr>
                 </thead>
                 <tbody>
-                  <% users.forEach(function(user){ %>
+                  <% if(PostList.length  >0){ %>
+                  <% PostList.forEach(function(post){ %>
                   <tr>
-                    <td><%= user.sn %></td>
-                    <td><%= user.username %></td>
-                    <td><%= user.firstName %></td>
-                    <td><%= user.email %></td>
-                    
+                    <td><%= post.sn %></td>
+                    <td><%= post.title.substring(0,10) %>...</td>
+                    <td><%= post.description.substring(0,30) %>...</td>
+                    <td><%= post.author %></td>
+                    <td><%= post.categoryName %></td>
+                    <td><%= post.formatedDate %></td>
                     <td>
-                      <a href="" class=" btn btn-success btn-sm">Edit</a>
-                    <form action="" method="post" style="display:inline-block">
+                      <a href="/admin/post/edit/<%= post._id %>" class=" btn btn-primary btn-sm">Edit</a>
+                      <a href="/admin/post/view/<%= post._id %>" class=" btn btn-success btn-sm">View</a>
+                    <form action="/admin/post/delete/<%= post._id %>" method="POST" style="display:inline-block">
                       <button type="submit" class="btn btn-danger btn-sm " onclick="return confirm('Are you sure?')">Delete</button>
                     </form>
                     </td>
                   </tr>
               <%  }) %>
+              <% } else{ %> 
+                 <tr>
+                  <td colspan="3" class="text-center">No Record Found</td>
+                </tr>
+
+             <% } %> 
                 </tbody>
               </table>
             </div>

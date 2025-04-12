@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require("body-parser");
-// const dotev = require('dotenv').config();
+const dotenv = require('dotenv').config();
 const session = require("express-session");
 const multer = require("multer");
 const MongoDBStore = require("connect-mongodb-session")(session);
@@ -21,7 +21,7 @@ const authRouter = require("./routes/authRouter");
 const homeRouter = require('./routes/homeRouter');
 
 
-
+const DB_URL =process.env.DB_URL;
 
 const app = express();
 app.set('view engine','ejs');
