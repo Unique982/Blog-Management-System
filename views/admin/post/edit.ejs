@@ -27,7 +27,7 @@
                   <h3 class="card-title">Post Update</h3>
                 </div>
                 <div class="card-body">
-                  <form action="/admin/post/edit" method="POST">
+                  <form action="/admin/post/edit" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<%= postlist._id %>">
                     <div class="form-group">
                       <label for="">Title</label>
@@ -59,6 +59,15 @@
                       <span class="text-danger"><%= errors.category.msg %></span>
                       <% } %>
                     </div>
+                    <div>
+                      <label for="Blog Image" class="form-group">Blog Image:</label>
+                      <input 
+                        type="file" 
+                        name="blog_image" 
+                        id="" 
+                        class="form-control">
+                    </div>
+                    <img src="/<%= postlist.blog_image %>" alt="Blog Image" style="max-width: 300px;" class="mt-4">
                    
                     <div class="form-group">
                       <label for="">Tag</label>

@@ -39,3 +39,8 @@ npm install mongodb
 
 # 14. Mongoose ODM
 npm install mongoose
+
+# 15. Cookie Parser
+npm install cookie-parser
+# 16. JSONWEB token
+npm install jsonwebtoken

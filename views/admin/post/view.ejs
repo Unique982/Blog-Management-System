@@ -37,11 +37,22 @@ include('../partials/sidebar') %>
               </tr>
               <tr>
                 <th>Description</th>
-              <td><textarea class="form-control"><%= PostList.description %></textarea></td>
+              <td><textarea class="form-control" readonly><%= PostList.description %></textarea></td>
               </tr>
              <tr>
               <th>Category</th>
               <td><%= categoryName %></td>
+             </tr>
+             <tr>
+              <th>
+                Image:
+              </th>
+              <td> <img src="/<%=PostList.blog_image %>" class="card-img-top" alt="No Image">
+             </td>
+             </tr>
+             <tr>
+              <th>Tag</th>
+              <td><%= PostList.tag%></td>
              </tr>
              <tr>
               <th>Author</th>

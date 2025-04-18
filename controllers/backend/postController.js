@@ -2,12 +2,13 @@ const {check,validationResult} = require('express-validator');
 const Post = require('../../models/post');
 const Category = require('../../models/category');
 const User =require('../../models/user');
-const post = require('../../models/post');
+const fs = require('fs');
+
 
 exports.getAddPost = async (req,res,next)=>{
  const categories = await Category.find();
 //  console.log(categories); -> check categories print or not
-    res.render('admin/post/add',{pageTitle:"Add Post Page",categories:categories,errors:{},oldInput:{}});
+    res.render('admin/post/add',{pageTitle:"Add Post Page",categories:categories,errors:{},oldInput:{},user:req.user,userType:req.user?.userType,});
   
 }
 // handling post add 
@@ -38,9 +39,17 @@ exports.postAdd = [
   .withMessage("Category is required")
   .trim()
   ,
+ 
 async (req,res,next) =>{
   const {title,description,category,tag} = req.body;
   console.log(req.body);
+  console.log(req.file);
+  if(!req.file){
+    return res.status(422).send("No Image Provide");
+  }
+  const blog_image = req.file.path;
+  console.log(blog_image);
+
   const errors = validationResult(req);
   if(!errors.isEmpty()){
     const categories = await Category.find();
@@ -51,11 +60,13 @@ async (req,res,next) =>{
         errors:errors.mapped(),
         post:{},
         categories:categories,
-        oldInput:{title,description,category,tag},
+        oldInput:{title,description,category,tag,blog_image},
+        user:req.user,
+        userType:req.user?.userType,
     })
   }
   const author = req.session.user?._id;
-  const post = new Post({title,description,category,tag,author})
+  const post = new Post({title,description,category,blog_image,tag,author})
   console.log(post);
   return post.save().then(() =>{
     console.log("Post added Successfully");
@@ -67,26 +78,29 @@ async (req,res,next) =>{
       errorsMessage:[err.message],
       post:{},
       categories:[],
-      oldInput:{title,description,category,tag}
-     
+      oldInput:{title,description,category,blog_image,tag},
+      user:req.user,
+      userType:req.user?.userType,
     })
   })
 },
 ];
 // get all post list
 exports.getPostList =async (req,res,next)=>{
-  const post = await Post.find().populate('author','username').populate('category','categoryName')
+  const accessUser = req.user.userType==='editor' ? {author:req.user._id}:{};
+  const post = await Post.find(accessUser).sort({_id:-1}).populate('author','username').populate('category','categoryName')
   res.render('admin/post/list',{
     pageTitle:"Post List",
     PostList:post.map((post,index)=>({
       ...post.toObject(),sn:index+1,
       author:post.author?.username,
       categoryName:post.category?.categoryName,
-      oldInput:{},
       formatedDate:new Date(post.createdAt).toLocaleDateString(),
-      
-    })
-  )})
+    })),
+  oldInput:{}, 
+  user:req.user,
+  userType:req.user?.userType,
+})
 };
 
 // delete Post 
@@ -102,7 +116,7 @@ exports.deletePost = (req,res,next)=>{
 }
 // edit handling 
 exports.editPost = async(req,res,next)=>{
-  const categories =await Category.find();
+  const categories =await Category.find(); 
   const postId = req.params.id;
   Post.findById(postId).then (postlist =>{
     if(!postlist){
@@ -115,6 +129,8 @@ exports.editPost = async(req,res,next)=>{
       categories,
       category: postlist.category,
       postlist:postlist,errors:{},
+      user:req.user,
+      userType:req.user?.userType,
     });
   }).catch(err =>{
     console.log("Edit Error",err);
@@ -153,7 +169,7 @@ exports.editPost = async(req,res,next)=>{
   
 
    async(req,res,next) =>{
-  const {id,title,description,category,tag} = req.body;
+  const {id,title,description,category,blog_image,tag} = req.body;
   const errors = validationResult(req);
   if(!errors.isEmpty()){
     const categories = await Category.find();
@@ -161,8 +177,10 @@ exports.editPost = async(req,res,next)=>{
       pageTitle:"Edit Page",
       errorsMessage:errors.array().map(errors =>errors.msg),
       errors:errors.mapped(),
-      post:{_id:id,title,description,category,tag},
+      post:{_id:id,title,description,category,blog_image,tag},
       categories:categories,
+      user:req.user,
+      userType:req.user?.userType,
     })
   }
   Post.findById(id).then((post=>{
@@ -170,6 +188,15 @@ exports.editPost = async(req,res,next)=>{
     post.description = description;
     post.category = category;
     post.tag = tag;
+ 
+    if(req.file){
+      fs.unlink(post.blog_image,(err)=>{
+        if(err){
+          console.log("Error File",err);
+        }
+      });
+      post.blog_image = req.file.path;
+    }
     post.save().then((result) =>{
       console.log("Update Successfully",result);
       res.redirect('/admin/post/list')
@@ -196,6 +223,8 @@ exports.viewPost = (req,res,next) =>{
         categoryName:post.category?.categoryName||'',
         oldInput:{},
         formatedDate:new Date(post.createdAt).toLocaleDateString(),
+        user:req.user,
+        userType:req.user?.userType,
         
       })
    

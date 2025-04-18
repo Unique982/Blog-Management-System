@@ -12,28 +12,28 @@
         <div class="card-body">
           <form action="/signup" method="POST">
             <div class="form-group mb-2">
-              <label for="">Username</label>
+              <label for="">Username<span style="color:red">*</span></label>
               <input type="text" name="username" value="<%= typeof  oldInput !=='undefined' ? oldInput.username :'' %>" class="form-control" placeholder="Enter Your Usename">
               <% if(errors && errors.username){ %>
                 <span class="text-danger"><%= errors.username.msg %></span>
                 <% } %>
             </div>
             <div class="form-group mb-2">
-              <label for="">First Name</label>
+              <label for="">First Name<span style="color:red">*</span></label>
               <input type="text" name="firstName" value="<%= typeof oldInput !== 'undefined' ? oldInput.firstName:'' %>"class="form-control" placeholder="Enter Your FirstName">
               <% if(errors && errors.firstName) {%>
               <span class="text-danger"><%= errors.firstName.msg %></span>
               <% } %>
             </div>
             <div class="form-group mb-2">
-              <label for="">Last Name</label>
+              <label for="">Last Name<span style="color:red">*</span></label>
               <input type="text" name="lastName" value="<%= typeof oldInput !=='undefined'? oldInput.lastName:'' %>" placeholder="Enter Your LasName" class="form-control">
               <% if(errors && errors.lastName) {  %>
               <span class="text-danger"><%= errors.lastName.msg %></span>
               <% } %>
             </div>
             <div class="form-group mb-2">
-              <label for="">Email</label>
+              <label for="">Email<span style="color:red">*</span></label>
               <input type="text" name="email" value="<%= typeof oldInput!=='undefined'?  oldInput.email :'' %>" placeholder="Enter Your Email" class="form-control">
               <% if(errors && errors.email) {  %>
               <span class="text-danger"><%= errors.email.msg %></span>
@@ -41,14 +41,14 @@
               
             </div>
             <div class="form-group mb-2">
-              <label for="">Password</label>
+              <label for="">Password<span style="color:red">*</span></label>
               <input type="password" name="password" placeholder="Enter Your Password" class="form-control">
               <% if(errors && errors.password) {  %>
               <span class="text-danger"><%= errors.password.msg %></span>
               <% } %>
             </div>
             <div class="form-group mb-2">
-              <label for="">Confirm Password</label>
+              <label for="">Confirm Password<span style="color:red">*</span></label>
               <input type="password" name="confirmPassword" placeholder="Enter ConfirmPassword" class="form-control">
               <% if(errors && errors.confirmPassword) { %>
               <span class="text-danger"><%= errors.confirmPassword.msg %></span>

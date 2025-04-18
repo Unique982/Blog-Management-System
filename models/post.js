@@ -11,6 +11,11 @@ const postSchema = mongoose.Schema({
     required:[true,'Description is required'],
     min:[30,"Description  must be at least 30 charaters"]
   },
+  blog_image:{
+    type:String,
+    required:[true,"Image is required"]
+
+  },
  
   category:{
     type:mongoose.Schema.Types.ObjectId,
@@ -18,7 +23,7 @@ const postSchema = mongoose.Schema({
     required:[true,'Catgory is required']
   },
   tag:{
-    type:String
+    type:[String]
   },
   author:{
     type:mongoose.Schema.Types.ObjectId,

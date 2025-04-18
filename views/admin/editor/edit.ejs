@@ -1,0 +1,70 @@
+<title><%= pageTitle %></title>
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+<%- include('../partials/sidebar') %>
+<div class="content-wrapper">
+  <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Update Editor</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                <li class="breadcrumb-item active">Update Editor</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
+      <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">Editor Update</h3>
+                </div>
+                <div class="card-body">
+                  <form action="/admin/editor/edit" method="POST" novalidate="novalidate">
+                    <input type="hidden" name="id" value="<%= editorInfo._id %>">
+                      <div class="form-group">
+                        <label for="">Username</label>
+                        <input type="text" name="username" value="<%= editorInfo.username %>" class="form-control" placeholder="Enter Your Usename">
+                       <% if(errors && errors.username){ %>
+                       <span class="text-danger"><%= errors.username.msg %></span>
+                       <% } %>
+                      </div>
+                      <div class="form-group">
+                        <label for="">First Name</label>
+                        <input type="text" name="firstName" value="<%= editorInfo.firstName %>"class="form-control" placeholder="Enter Your FirstName">
+                       
+                      </div>
+                      <div class="form-group">
+                        <label for="">Last Name</label>
+                        <input type="text" name="lastName" value="<%= editorInfo.lastName %>" placeholder="Enter Your LasName" class="form-control">
+                       
+                      </div>
+                      <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="text" name="email" value="<%= editorInfo.email %>" placeholder="Enter Your Email" class="form-control">
+                          
+                      </div>
+                      <div class="form-group mb-2">
+                        <input type="submit" value="Add Editor" class="btn btn-primary">
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+     
+    <!-- /.content -->
+  </div>
+  
+
+<%- include('../partials/script') %>
+<%- include('../partials/footer') %>

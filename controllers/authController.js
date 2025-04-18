@@ -1,4 +1,5 @@
 const {check, validationResult} = require("express-validator");
+const {createTokenForUser} = require('../services/authenticationToken');
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 
@@ -42,8 +43,15 @@ exports.postSignup = [
   .withMessage("Email is required")
   .trim()
   .isEmail()
-  .withMessage("Please Enter Valid Email"),
-
+  .withMessage("Please Enter Valid Email")
+  .custom(async(value)=>{
+    const existingUser = await User.findOne({email:value});
+    if(existingUser){
+      throw new Error("email Already exists");
+    }
+    return true;
+  })
+  ,
   check("password")
   .notEmpty()
   .withMessage("Password is required")
@@ -110,9 +118,30 @@ exports.getLogin = (req,res,next) =>{
 }
 
 // post Login 
-exports.postLogin =async (req,res,next)=>{
+exports.postLogin =[
+  check("email")
+  .notEmpty()
+  .withMessage("User name is required"),
+  check("password")
+  .notEmpty()
+  .withMessage("Password is required"),
+
+async (req,res,next)=>{
   const {email,password} = req.body;
+  console.log(req.body);
   const errors = validationResult(req);
+ if(!errors.isEmpty()){
+  return res.status(422).render("auth/login",{
+    pageTitle:"Login Page",
+    isLoggedIn:false,
+    errorMessage:errors.array().map(
+      errors =>errors.msg),
+      errors:errors.mapped(),
+      oldInput:{email},
+      user:{},
+  });
+ }
+
   const user = await User.findOne({email});
   if(!user){
     return res.status(422).render("auth/login",{
@@ -131,14 +160,16 @@ exports.postLogin =async (req,res,next)=>{
       errorMessage:'Invalid User Account',
       oldInput:{email},user:{},
     })
-
   }
+  const token = createTokenForUser(user);
+  console.log(token);
   req.session.isLoggedIn=true;
   req.session.user = user;
   await req.session.save();
-  res.redirect('/admin/dashboard');
+res.cookie("token",token).redirect('/admin/dashboard');
 
 }
+]
 
 //logout section
 exports.getLogout = (req,res,next) =>{

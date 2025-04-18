@@ -38,7 +38,9 @@ exports.AddCategory =[
       errorMessage:errors.array().map(
         errors =>errors.msg),
         errors:errors.mapped(),
-      category:{}
+      category:{},
+      user:req.user,
+      userType:req.user?.userType,
     });
   }
   const category = new Category({categoryName,description});
@@ -51,6 +53,8 @@ exports.AddCategory =[
     return res.status(422).render('admin/catgeory/list',{
       pageTitle:'Category Add',
       errorsMessage:[err.message],
+      user:req.user,
+      userType:req.user?.userType,
     });
   })
   
@@ -58,10 +62,12 @@ exports.AddCategory =[
 ];
 // manage Category
 exports.getCategoryDataList =async(req,res,next)=>{
-  const categorys = await Category.find();
+  const categorys = await Category.find().sort({_id:1});
   res.render('admin/category/list',{pageTitle:"Manage Category",CategoryList:categorys.map((categorys,index)=>({
 ...categorys.toObject(),sn:index+1
-  }))
+  })),
+  user:req.user,
+  userType:req.user?.userType,
 });
 
 }
@@ -75,7 +81,8 @@ exports.getEditfrom = (req,res,next)=>{
       return res.redirect('/admin/category/list');
     }
 console.log(categoryId,categorys);
-  res.render("admin/category/edit",{pageTitle:"Edit Category",categorys:categorys,errors:{}});
+  res.render("admin/category/edit",{pageTitle:"Edit Category",categorys:categorys,errors:{},user:req.user,
+    userType:req.user?.userType,});
 }).catch(err =>{
   console.log("edit error",err);
   res.redirect('/admin/category/list')
@@ -110,7 +117,9 @@ check("description")
       errorMessage:errors.array().map(
         err =>err.msg),
         errors:errors.mapped(),
-        categorys: { _id: id, categoryName,description }
+        categorys: { _id: id, categoryName,description },
+        user:req.user,
+        userType:req.user?.userType,
     });
   }
   Category.findById(id).then((category)=>{

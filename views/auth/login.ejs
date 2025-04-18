@@ -10,18 +10,24 @@
           <hr style="border:2px solid black" width="100%">
        
         <div class="card-body">
+          <% if(typeof errorMessage !=='undefined' && errorMessage){ %>
+            <div class="alert alert-danger" role="alert">
+             <%= errorMessage %>
+            </div>
+            <% } %>
           <form action="/login" method="POST">
             <div class="form-group mb-3">
-              <label for="">Email</label>
-              <input type="text" name="email" placeholder="Enter Your Email" class="form-control">
-             
+              <label for="">Email<span style="color:red">*</span></label>
+              <input type="email" name="email" placeholder="Enter Your Email" class="form-control">
             </div>
             <div class="form-group mb-3">
-              <label for="">Password</label>
+              <label for="">Password<span style="color:red">*</span></label>
               <input type="password" name="password" placeholder="Enter Your Password" class="form-control">
             </div>
             <div class="form-group mb-3">
-              <input type="submit" value="Login" class="btn btn-primary w-100">
+             
+              <input type="submit" value="Login" class="btn btn-primary w-100 buttonload">
+             
               <p class="text-center mt-3">Don't have an account?  <a href="/signup">Signup</a></p>
             </div>
           </form>
