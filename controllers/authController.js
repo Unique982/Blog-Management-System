@@ -166,11 +166,14 @@ async (req,res,next)=>{
   req.session.isLoggedIn=true;
   req.session.user = user;
   await req.session.save();
-res.cookie("token",token).redirect('/admin/dashboard');
-
+res.cookie("token",token);
+if(user.userType==='admin' || user.userType==='editor'){
+  return res.redirect('/admin/dashboard');
+}else if(user.userType==='user'){
+  return res.redirect("/");
+}
 }
 ]
-
 //logout section
 exports.getLogout = (req,res,next) =>{
   req.session.destroy();

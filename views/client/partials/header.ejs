@@ -18,10 +18,10 @@
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
     crossorigin="anonymous" />
   <link href="/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="/assets/dist/css/style.css" rel="stylesheet">
+  <!-- <link href="/assets/dist/css/style.css" rel="stylesheet"> -->
 
-  <link rel="stylesheet" href="/assets/dist/css/owl.carousel.min.css">
-  <link rel="stylesheet" href="/assets/dist/css/owl.theme.default.min.css">
+  <!-- <link rel="stylesheet" href="/assets/dist/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="/assets/dist/css/owl.theme.default.min.css"> -->
 
   <link rel="apple-touch-icon.png" type="image/png" sizes="512*512" href="./assets/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="512*512" href="/assets/favicon/android-chrome-512x512.png"
@@ -33,41 +33,76 @@
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar">
-  <header class="sticky-top">
-    <nav class="navbar navbar-expand-lg bg-light">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
       <div class="container-fluid">
-        <a class="navbar-brand" href="index.php">M<span>Hospital</span></a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <!-- <span class="navbar-toggler-icon"></span> -->
-          <i class="fa-solid fa-bars-staggered"></i>
+        <a class="navbar-brand" href="#">BlugHub<span>Nepal</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="index.php">Home</a>
+              <a class="nav-link active" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link " href="">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="">Team</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="">Contact us</a>
-            </li>
-            <li class="nav-item">
-              <a href="/login"><button class="btn btn-primary ms-lg-3">Login</button></a>
+              <a class="nav-link" href="#">Link</a>
             </li>
           </ul>
+          <% if(!isLoggedIn){ %>
+         
+          <ul>
+            <li class="nav-item">
 
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+          </ul>
+          <% } else{ %>
+          <!-- Dropdown Menu -->
+           <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a href="nav-link dropdown-toggle d-flex" id="Dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                
+                <img src="/Blog_img/9egn2nmuammb--images.jpg" alt="" class="rounded-circle me-2" width="30px" height="30px">
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end me-auto mb-2 mb-lg-0" aria-labelledby="Dropdown">
+                <li class="dropdown-item text-center fw-bold text-dark">UserName</li>
+                <hr class="dropdown-divider">
+          <li><a href="" class="dropdown-item"><i class="fa-regular fa-user me-2"></i>Profile</a></li>
+          <li><a href="" class="dropdown-item"><i class="fa-solid fa-key me-2"></i>Password Change</a></li>
+          <hr class="dropdown-divider">
+          
+
+            <li> <form action="/logout" method="POST">
+              <button type="submit" class="hover:bg-red-400 py-2 px-4 rounded transition duration-300">Logout</button>
+            </form></li>
+                </ul>
+              </li>
+          <% }%>
+         
+           </ul>
         </div>
       </div>
     </nav>
   </header>
-
+    <!-- Logout Modal -->
+     <!-- Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="logoutModalLabel">Ready to Leave?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to logout?
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+     <a href="" class="btn btn-primary">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+  
