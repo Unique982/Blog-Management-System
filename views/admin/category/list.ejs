@@ -28,6 +28,7 @@ include('../partials/sidebar') %>
               <a href="/admin/category/add" class="btn btn-primary ml-2">Add Category</a>
             </div>
             <div class="card-body">
+              <div class="table-responsive">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                   <tr>
@@ -45,12 +46,14 @@ include('../partials/sidebar') %>
                     <td><%= category.categoryName %></td>
                     <td><%= category.description %></td>
                     <td>
+                      <div class="gap-2">
 
                       <a href="/admin/category/edit/<%= category._id %>" class=" btn btn-success btn-sm">Edit</a>
                     <form action="/admin/category/delete/<%= category._id %>" method="POST" style="display:inline-block">
                       <button type="submit" class="btn btn-danger btn-sm " onclick="return confirm('Are you sure?')">Delete</button>
                     </form>
                     </td>
+                  </div>
                   </tr>
               <%  }) %>
               <% } else{ %>
@@ -61,6 +64,7 @@ include('../partials/sidebar') %>
              <% } %>
                 </tbody>
               </table>
+              </div>
             </div>
           </div>
         </div>

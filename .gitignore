@@ -1,0 +1,10 @@
+	node_modules/
+  dist/
+  *.log
+public/uploads/
+.evn
+# Ignore vendor assets
+/public/assets/vendor/
+# Ignore vendor assets
+/public/assets/dist/
+
