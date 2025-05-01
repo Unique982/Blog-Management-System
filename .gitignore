@@ -1,9 +1,17 @@
+# Node modules
 node_modules/
+
+# Build output
 dist/
+
+# Log files
 *.log
 
-.evn
-# Ignore vendor assets
+# Environment files (typo fixed: .evn → .env)
+.env
+
+# Vendor folder (for PHP/Laravel)
 vendor/
 
-
+# Custom public assets (if needed)
+public/assets/disk/
