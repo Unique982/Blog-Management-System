@@ -42,7 +42,7 @@
  <!-- Advertisement Section -->
  <section class="py-5 bg-light advertisement_section">
 <div class="container text-center">
-  <h4 class="text-muted mb-4">Our Trused Sponors</h4>
+  <h4 class="text-muted mb-4">Our Trusted Sponors</h4>
   <div class="logo-slider-wrapper py-3 overflow-hidden">
     <div class="logo-slider-track d-flex align-items-center">
 <div class="logo-slide mx-3">
@@ -106,18 +106,21 @@
     <h4 class="text-muted mb-4"> Latest Blog</h4>
     <div class="row g-4 py-4">
       <!-- main card post -->
+       <% if(posts.length >0) {%>
       <div class="col-md-6">
         <div class="card border-0 h-100">
-          <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/66610504/2636936256.jpg" alt="lastest_blog" class="card-img-top card-img-bottom">
+          <img src="/<%= posts[0].blog_image %>" alt="lastest_blog" class="card-img-top card-img-bottom">
           <div class="card-body">
-            <span class="text-muted">2000 Unique</span>
-            <span class="text-muted">2000 Unique</span>
-            <span class="text-muted">2000 Unique</span>
-            <h2 class="card-title mt-2 fs-20 fw-bold">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas, labore.</h2>
-            <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam, at deleniti veniam eaque architecto id nesciunt mollitia amet ad nihil temporibus quam dolorum eos illum repellendus eius repudiandae quo non!</p>
+            <span class="text-muted"><i class="fa-solid fa-clock"></i> <%= posts[0].createdAt.toString() %></span>
+            <span class="text-muted"><i class="fa-solid fa-user"></i> <%= posts[0].author.username %></span>
+            <span class="text-muted mb-1"> <i class="fa-solid fa-user-tag"></i> <%= posts[0].category.categoryName %></span>
+            <h2 class="card-title mt-2 fs-20 fw-bold"><%= posts[0].title.substring(0,50)%>...</h2>
+            <p class="card-text"><%= posts[0].description.substring(0,300) %>...</p>
+            
           </div>
         </div>
       </div>
+      <% } %>
       <div class="col-md-6">
         <div class="row g-3">
           <div class="col-6">

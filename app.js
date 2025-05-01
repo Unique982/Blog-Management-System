@@ -81,6 +81,7 @@ app.use('/admin/Blog_img',express.static(path.join(rootDir,"Blog_img")));
 
 
 
+
 // use route 
 // app.use(dashbaordRouter);
 
