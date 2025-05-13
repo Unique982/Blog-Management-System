@@ -106,16 +106,16 @@
     <h4 class="text-muted mb-4"> Latest Blog</h4>
     <div class="row g-4 py-4">
       <!-- main card post -->
-       <% if(posts.length >0) {%>
+       <% if(latestPosts.length >0) {%>
       <div class="col-md-6">
         <div class="card border-0 h-100">
-          <img src="/<%= posts[0].blog_image %>" alt="lastest_blog" class="card-img-top card-img-bottom">
+          <a href="/single/<%= latestPosts[0]._id.toString() %>"><img src="/<%= latestPosts[0].blog_image %>" alt="lastest_blog" class="card-img-top card-img-bottom"></a>
           <div class="card-body">
-            <span class="text-muted"><i class="fa-solid fa-clock"></i> <%= posts[0].createdAt.toString() %></span>
-            <span class="text-muted"><i class="fa-solid fa-user"></i> <%= posts[0].author.username %></span>
-            <span class="text-muted mb-1"> <i class="fa-solid fa-user-tag"></i> <%= posts[0].category.categoryName %></span>
-            <h2 class="card-title mt-2 fs-20 fw-bold"><%= posts[0].title.substring(0,50)%>...</h2>
-            <p class="card-text"><%= posts[0].description.substring(0,300) %>...</p>
+            <span class="text-muted"><i class="fa-solid fa-clock"></i> <%= latestPosts[0].createdAt.toDateString() %></span>
+            <span class="text-muted"><i class="fa-solid fa-user"></i> <%= latestPosts[0].author.username %></span>
+            <span class="text-muted mb-1"> <i class="fa-solid fa-user-tag"></i> <%= latestPosts[0].category.categoryName %></span>
+            <a href="" class="card-title text-start"><h2 class="mt-2 fs-20 fw-bold"><%= latestPosts[0].title.substring(0,50)%>...</h2></a>
+            <p class="card-text"><%= latestPosts[0].description.substring(0,300) %>...</p>
             
           </div>
         </div>
@@ -123,49 +123,19 @@
       <% } %>
       <div class="col-md-6">
         <div class="row g-3">
+          <% for(var i = 1; i< Math.min(latestPosts.length, 5);i++){ %>
           <div class="col-6">
             <div class="card border-0 h-100">
-              <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/66610504/2636936256.jpg" alt="lastest_blog" class="card-img-top card-img-bottom">
+             <img src="/<%= latestPosts[i].blog_image %>" alt="lastest_blog"  class="card-img-top card-img-bottom h-100">
               <div class="card-body">
-              <span class="text-muted">2000</span>
-              <span class="text-muted">2000</span>
-              <span class="text-muted">2000</span>
-              <h6 class="card-title mt-1 fs-20 fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, quibusdam!</h6>
+              <span class="text-muted"><i class="fa-solid fa-clock"></i> <%=latestPosts[i].createdAt.toDateString() %></span>
+              <span class="text-muted"><i class="fa-solid fa-user"></i> <%= latestPosts[i].author ? latestPosts[i].author.username:"" %></span>
+              <a href="" class="card-title"><h6 class="mt-1 fs-20 fw-bold"><%= latestPosts[i].title.substring(0,30)%>...</h6></a>
               </div>
             </div>
           </div>
-              <div class="col-6">
-                <div class="card border-0 h-100">
-                  <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/66610504/2636936256.jpg" alt="lastest_blog" class="card-img-top card-img-bottom">
-                  <div class="card-body">
-                    <span class="text-muted">BlogHub</span>
-                    <span class="text-muted mt-1">20/30/2222</span>
-                    <h6 class="card-title mt-1 fs-20 fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, incidunt.</h6>
-                  </div>
-                </div>
-              </div>
-            </div>
-        <div class="row g-2 mt-1">
-        <div class="col-6">
-          <div class="card border-0 h-100">
-            <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/66610504/2636936256.jpg" alt="lastest_blog" class="card-img-top card-img-bottom">
-            <div class="card-body">
-            <span class="text-muted">BlogHub</span>
-            <span class="text-muted mt-1">20/30/2222</span>
-            <h6 class="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, incidunt.</h6>
-           </div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="card border-0 h-100">
-            <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/66610504/2636936256.jpg" alt="lastest_blog" class="card-img-top card-img-bottom">
-          <div class="card-body">
-          <span class="text-muted">BlogHub</span>
-          <span class="text-muted mt-1">20/30/2222</span>
-          <h6 class="card-title">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, incidunt.</h6>
-           </div>
-          </div>
-         </div>
+             
+         <%  } %>
         </div>
        </div>
      </div>
@@ -176,181 +146,29 @@
   <div class="container">
     <h4 class="text-muted mb-4">Our Blog</h4>
     <div class="row g-4 py-4">
-      <div class="col-md-6">
+        <% otherPosts.forEach(otherPosts => { %>
+      <div class="col-md-4">
         <div class="card border-0 h-100">
-          <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/66610504/2636936256.jpg" alt="lastest_blog" class="card-img-top card-img-bottom">
+          <img src="/<%=otherPosts.blog_image %>" alt="OurBlog Image" class="card-img-top card-img-bottom">
           <div class="card-body">
-            <span class="text-muted text-center">Date</span>
-            <span class="text-muted align-items-center">Category</span>
-            <h3 class="card-title fs-25 fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, corrupti?</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, voluptas. Sequi ullam rem, quia iste aspernatur sed tempore eos eum necessitatibus beatae neque voluptatibus, nihil porro, cumque quasi quis. Asperiores corrupti voluptatum maxime amet facere iure tempora soluta, ab voluptate pariatur blanditiis nesciunt eligendi quia error iste aperiam ad excepturi?</p>
+            <span class="text-muted"><i class="fa-solid fa-clock"></i> <%=otherPosts.createdAt.toDateString() %></span>
+              <span class="text-muted"><i class="fa-solid fa-user"></i> <%= otherPosts.author ? otherPosts.author.username:"" %></span>
+              <span class="text-muted"><i class="fa-solid fa-user-tag"></i> <%= otherPosts.category.categoryName %></span>
+            <h3 class="card-title fs-25 fw-bold"><%= otherPosts.title %></h3>
+            <p><%= otherPosts.description.substring(0,100) %>....</p>
             <a href="#" class="text-primary text-decoration-none mt-1">
               Read <i class="fas fa-arrow-right ms-1"></i>
             </a>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
-        <div class="card border-0 h-100">
-          <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/66610504/2636936256.jpg" alt="lastest_blog" class="card-img-top card-img-bottom">
-          <div class="card-body">
-            <span class="text-muted">Date</span>
-            <span class="text-muted">Category</span>
-            <h3 class="card-title fs-25 fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, corrupti?</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, voluptas. Sequi ullam rem, quia iste aspernatur sed tempore eos eum necessitatibus beatae neque voluptatibus, nihil porro, cumque quasi quis. Asperiores corrupti voluptatum maxime amet facere iure tempora soluta, ab voluptate pariatur blanditiis nesciunt eligendi quia error iste aperiam ad excepturi?</p>
-            <a href="#" class="text-primary text-decoration-none mt-1">
-              Read <i class="fas fa-arrow-right ms-1"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-      
-      <!--  -->
-      <div class="row g-4">  
-        <div class="col-md-6">
-          <div class="row g-3">
-            <div class="col-6">
-              <div class="card border-0 h-100">
-                <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/66610504/2636936256.jpg" alt="latest_blog" class="card-img-top card-img-bottom">
-                <div class="card-body">
-                  <span class="text-muted">2000</span>
-                  <span class="text-muted">2000</span>
-                  <span class="text-muted">2000</span>
-                  <h6 class="card-title mt-1 fs-20 fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, quibusdam!</h6>
-                </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="card border-0 h-100">
-                <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/66610504/2636936256.jpg" alt="latest_blog" class="card-img-top card-img-bottom">
-                <div class="card-body">
-                  <span class="text-muted">2000</span>
-                  <span class="text-muted">2000</span>
-                  <span class="text-muted">2000</span>
-                  <h6 class="card-title mt-1 fs-20 fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, quibusdam!</h6>
-                </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="card border-0 h-100">
-                <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/66610504/2636936256.jpg" alt="latest_blog" class="card-img-top card-img-bottom">
-                <div class="card-body">
-                  <span class="text-muted">2000</span>
-                  <span class="text-muted">2000</span>
-                  <span class="text-muted">2000</span>
-                  <h6 class="card-title mt-1 fs-20 fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, quibusdam!</h6>
-                </div>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="card border-0 h-100">
-                <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/66610504/2636936256.jpg" alt="latest_blog" class="card-img-top card-img-bottom">
-                <div class="card-body">
-                  <span class="text-muted">2000</span>
-                  <span class="text-muted">2000</span>
-                  <span class="text-muted">2000</span>
-                  <h6 class="card-title mt-1 fs-20 fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, quibusdam!</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card border-0 h-100">
-            <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/66610504/2636936256.jpg" alt="lastest_blog" class="card-img-top card-img-bottom">
-            <div class="card-body">
-              <span class="text-muted text-center">Date</span>
-              <span class="text-muted align-items-center">Category</span>
-              <h3 class="card-title fs-25 fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, corrupti?</h3>
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, voluptas. Sequi ullam rem, quia iste aspernatur sed tempore eos eum necessitatibus beatae neque voluptatibus, nihil porro, cumque quasi quis. Asperiores corrupti voluptatum maxime amet facere iure tempora soluta, ab voluptate pariatur blanditiis nesciunt eligendi quia error iste aperiam ad excepturi?</p>
-              <a href="#" class="text-primary text-decoration-none mt-1">
-                Read <i class="fas fa-arrow-right ms-1"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- ssend Small -->
-    <div class="row g-4">
-      <div class="col-6 col-md-3">
-        <div class="card border-0 h-100">
-          <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/66610504/2636936256.jpg" alt="latest_blog" class="card-img-top card-img-bottom">
-          <div class="card-body">
-            <span class="text-muted">2000</span>
-            <span class="text-muted">2000</span>
-            <span class="text-muted">2000</span>
-            <h6 class="card-title mt-1 fs-20 fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, quibusdam!</h6>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="card border-0 h-100">
-          <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/66610504/2636936256.jpg" alt="latest_blog" class="card-img-top card-img-bottom">
-          <div class="card-body">
-            <span class="text-muted">2000</span>
-            <span class="text-muted">2000</span>
-            <span class="text-muted">2000</span>
-            <h6 class="card-title mt-1 fs-20 fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, quibusdam!</h6>
-          </div>
-        </div>
-      </div>
-      <div class="col-6 col-md-3">
-        <div class="card border-0 h-100">
-          <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/66610504/2636936256.jpg" alt="latest_blog" class="card-img-top card-img-bottom">
-          <div class="card-body">
-            <span class="text-muted">2000</span>
-            <span class="text-muted">2000</span>
-            <span class="text-muted">2000</span>
-            <h6 class="card-title mt-1 fs-20 fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, quibusdam!</h6>
-          </div>
-        </div>
-      </div>
-    
-      <div class="col-6 col-md-3">
-        <div class="card border-0 h-100">
-          <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/66610504/2636936256.jpg" alt="latest_blog" class="card-img-top card-img-bottom">
-          <div class="card-body">
-            <span class="text-muted">2000</span>
-            <span class="text-muted">2000</span>
-            <span class="text-muted">2000</span>
-            <h6 class="card-title mt-1 fs-20 fw-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, quibusdam!</h6>
-          </div>
-        </div>
-      </div>
-    </div>
-    
+      <% }) %>
+     
     
   </div>
  </section>
 
- <!-- <section class="py-4 our-team">
-  <div class="container text-center">
-    <h4 class="text-muted mb-4">Our Teams</h4>
-    <p class="text-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat, adipisci.</p>
-    <div class="row g-4 py-5">
-      <div class="col-lg-4 col-md-6">
-      <div class="card border-0">
-        <div class="bg-primary p-4">
-          <img src="https://d2j6dbq0eux0bg.cloudfront.net/images/66610504/2636936256.jpg" alt="lastest_blog"class="rounded-circle img-fluid">
-        </div>
-        <div class="card-body py-2 text-center">
-          <p class="card-title mt-3"><strong class="text-muted">Name:</strong> Unique Neiupane</p>
-          <p class=" mb-1"><strong class="text-muted">Position: </strong>Full Stack Developer</p>
-          <p class="text-muted"><strong>About Us:</strong>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore libero suscipit expedita provident ea fugit facere in adipisci earum? Distinctio et esse consequuntur ut at. Est unde tempora repellat soluta.</p>
-          <div class="footer socail-icon mt-4 ">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#"><i class="fab fa-github"></i></a>
-            
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-  </div>
- </section> -->
+ 
  
  
 

@@ -30,8 +30,6 @@ exports.postAdd = [
   .trim()
   .isLength({min:30})
   .withMessage("Description must be min 30 characters")
-  .matches(/^[a-zA-Z0-9\s.,!?()-]+$/)
-  .withMessage("Description invalid characters")
   ,
   // Category Validation
   check("category")
@@ -116,14 +114,15 @@ exports.deletePost = (req,res,next)=>{
 }
 // edit handling 
 exports.editPost = async(req,res,next)=>{
+  try{
   const categories =await Category.find(); 
   const postId = req.params.id;
-  Post.findById(postId).then (postlist =>{
+  const postlist = await Post.findById(postId)
     if(!postlist){
       console.log("Post id not Found");
       return res.redirect('/admin/post/list');
     }
-    console.log(postId,postlist);
+    
     res.render("admin/post/edit",{
       pageTitle:"Edit Post",
       categories,
@@ -132,10 +131,11 @@ exports.editPost = async(req,res,next)=>{
       user:req.user,
       userType:req.user?.userType,
     });
-  }).catch(err =>{
+  }catch(err){
     console.log("Edit Error",err);
     res.redirect('/admin/post/list');
-  });
+  };
+
 }
 
 // post Edit form Handling
@@ -157,8 +157,6 @@ exports.editPost = async(req,res,next)=>{
   .trim()
   .isLength({min:30})
   .withMessage("Description must be min 30 characters")
-  .matches(/^[a-zA-Z0-9\s.,!?()-]+$/)
-  .withMessage("Description invalid characters")
   ,
   // Category Validation 
   check("category")
@@ -177,7 +175,7 @@ exports.editPost = async(req,res,next)=>{
       pageTitle:"Edit Page",
       errorsMessage:errors.array().map(errors =>errors.msg),
       errors:errors.mapped(),
-      post:{_id:id,title,description,category,blog_image,tag},
+      postlist:{_id:id,title,description,category,blog_image,tag},
       categories:categories,
       user:req.user,
       userType:req.user?.userType,

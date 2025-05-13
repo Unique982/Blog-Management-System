@@ -15,3 +15,5 @@ vendor/
 
 # Custom public assets (if needed)
 public/assets/disk/
+ 
+ sec_home

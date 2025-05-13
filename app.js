@@ -7,6 +7,7 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const path = require('path');
 const cookieParse = require('cookie-parser');
 
+
 const checkForAuthenticationCokies = require('./middlewares/authentication');
 
 
@@ -126,7 +127,7 @@ app.use("/admin",visitorRouter);
 app.use(errorsController.pageNotFound);
 const PORT =  3000;
 
-mongoose.connect(DB_URL).then(()=>{
+mongoose.connect(process.env.DB_URL).then(()=>{
   console.log("Connected To Mongoose");
   app.listen(PORT,()=>{
     console.log(`Server running an address :http://localhost:${PORT}`);
