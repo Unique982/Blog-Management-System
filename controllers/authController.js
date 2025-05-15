@@ -169,8 +169,6 @@ async (req,res,next)=>{
 res.cookie("token",token);
 if(user.userType==='admin' || user.userType==='editor'){
   return res.redirect('/admin/dashboard');
-}else if(user.userType==='user'){
-  return res.redirect("/");
 }
 }
 ]

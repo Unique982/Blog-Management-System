@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema({
  },
  userType:{
   type:String,
-  enum:['user','admin','editor'],
+  enum:['admin','editor'],
   default:'user'
  },
  password:{

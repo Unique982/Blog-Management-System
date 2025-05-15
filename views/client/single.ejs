@@ -1,2 +1,64 @@
 <title><%= pageTitle %></title>
-<h1>hello Soingle page </h1>
+<%- include('./partials/header') %>
+
+<section class="post-details py-5">
+  <div class="container ">
+    <div class="row justify-content-center ">
+      <div class="col-lg-9 justify-content-center">
+         <% if(post) {%>
+     <div class="card border-0">
+      <div class="card-title">
+        <h1 class="text-justify fw-bold fs-25 mt-2 mb-4"><%= post.title %></h1>
+        <img src="/<%= post.blog_image %>" alt="" class="card-img-top card-img-bottom h-500 w-500 ">
+       <div class="card-body">
+            <span class="border rounded px-3 py-1 m-1  text-muted small"><i class="fa-solid fa-clock"></i> Published at: <%= post.createdAt.toDateString() %> </span>
+            <span class="border rounded px-3 py-1 m-1  text-muted small"><i class="fa-solid fa-user"></i> Category:<%= post.category.categoryName %> </span>
+            <span class="border rounded px-3 py-1 m-1 text-muted small"> <i class="fa-solid fa-user-tag"></i> Author: <%= post.author ? post.author.username:"" %> </span>
+            <% post.description.split('\n').forEach(function(para) { %>
+             <p class="card-text mt-4 text-justify text-dark" style="font-size: 20px;">
+              <%= para.trim() %>
+            </p>
+            <% }); %>           
+          </div>
+          <!-- <button class="btn btn-light rounded"><%=post.tag%></button> -->
+          
+     </div>
+     <%  } %>
+      <!-- </div>
+      Comment Section here
+        <div class="card border-0">
+         <div class="card-body">
+          <form action="" method="POST">
+            
+            <div class="form-group mb-2">
+              <label for="" class="form-label">Comment</label>
+              <textarea name="" class="form-control" id="" placeholder="Enter Comment"></textarea>
+            </div>
+            <div class="group-form">
+              <button class="btn btn-primary">Comment</button>
+
+            </div>
+          </form> -->
+          <!-- Display comment Section  -->
+         <!-- <div class="mt-4">
+          <h3 class=" fs-25 mb-4" style="border-bottom: 2px solid black;">Comment</h3>
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                <img src="/assets/images/360_F_619264680_x2PBdGLF54sFe7kTBtAvZnPyXgvaRw0Y - Copy.jpg" alt="comment log" style="height: 40px; width: 40px; border-radius: 50%; margin-right: 10px; border: 2px solid black;">
+                <small class="text-muted fs-25">User Name</small>
+              </div>
+                <p class="mt-2 text-justify" style="margin-left: 50px;">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea, harum.</p>
+                <button type="button" class="btn btn-link p-0" data-bs-toggle="collapse" data-bs-target="#editForm">Edit</button>
+                <button type="button" class="btn btn-link p-0" data-bs-toggle="collapse" data-bs-target="#editForm">Delete</button>
+            </div>
+          </div>
+         </div>
+        </div> -->
+      
+      </div>
+    </div><!-- row div end-->
+  </div> <!-- container div end -->
+</section>
+
+    <%- include('./partials/footer') %>

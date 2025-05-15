@@ -21,5 +21,5 @@ exports.getHome = async(req,res,next) =>{
 exports.singlePost = async(req,res,next)=>{
   const id = req.params.id;
 const post = await Post.findById(id).populate('author').populate('category','categoryName');
-res.render("client/single",{pageTitle:post.title,post})
+res.render("client/single",{pageTitle:post.title,post, isLoggedIn:req.isLoggedIn})
 }
